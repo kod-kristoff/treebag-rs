@@ -1,15 +1,3 @@
-mod ranked;
-mod variable;
-
-pub use self::ranked::*;
-pub use self::variable::*;
-
-pub trait Symbol {
-    fn name(&self) -> &str;
-    fn rank(&self) -> i32;
-}
-
-pub type SymbolHandle = std::rc::Rc<dyn Symbol>;
 // package terms;
 // 
 // /** A ranked symbol.

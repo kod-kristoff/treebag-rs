@@ -1,6 +1,11 @@
+mod signature;
+pub mod signatures;
 mod symbol;
+mod term;
 
-// pub use symbol::*;
+pub use signature::*;
+pub use symbol::*;
+pub use term::*;
 
 #[cfg(test)]
 mod tests {

@@ -1,15 +1,4 @@
-mod ranked;
-mod variable;
-
-pub use self::ranked::*;
-pub use self::variable::*;
-
-pub trait Symbol {
-    fn name(&self) -> &str;
-    fn rank(&self) -> i32;
-}
-
-pub type SymbolHandle = std::rc::Rc<dyn Symbol>;
+use crate::symbol::Symbol;
 // package terms;
 // 
 // /** A ranked symbol.
@@ -90,11 +79,21 @@ pub type SymbolHandle = std::rc::Rc<dyn Symbol>;
 //   } 
 // }
 // package terms;
-// 
+#[derive(Debug)]
+pub struct Variable {
+    name: String,
+    index: i32,
+}
 // public class variable extends symbol {
 // 
 //   int index = 0;
-// 
+
+impl Variable {
+    pub fn from_index(index: i32) -> Self {
+        let name = format!("x{}", index);
+        Self { name, index }
+    }
+}
 //   public variable(String name) {
 //     super(name, 0);
 //     try {
@@ -121,6 +120,40 @@ pub type SymbolHandle = std::rc::Rc<dyn Symbol>;
 //   public int index() { return index; }
 //   
 // }
+impl Symbol for Variable {
+    fn name(&self) -> &str {
+        &self.name
+    }
+
+    fn rank(&self) -> i32 {
+        0
+    }
+}
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn can_create_from_index() {
+        let var = Variable::from_index(5);
+
+        assert_eq!(var.index, 5);
+        assert_eq!(&var.name, "x5");
+    }
+
+    mod trait_symbol {
+        use super::*;
+    
+        #[test]
+        fn can_create_from_index() {
+            let var = Variable::from_index(5);
+
+            assert_eq!(var.rank(), 0);
+            assert_eq!(var.name(), "x5");
+        }
+
+    }
+}
 // package terms;
 // 
 // /**
