@@ -1,3 +1,5 @@
+mod error;
+mod meta_command;
 mod repl;
 
 use rustyline::{
@@ -6,6 +8,10 @@ use rustyline::{
 };
 
 use repl::{CommandType, get_command_type};
+
+pub use error::{AppError, Response};
+pub use crate::meta_command::MetaCommand;
+use crate::meta_command::{handle_meta_command};
 
 
 fn main() -> rustyline::Result<()> {
@@ -47,7 +53,11 @@ fn main() -> rustyline::Result<()> {
                 match get_command_type(&command.trim().to_owned()) {
                     CommandType::MetaCommand(cmd) => {
                         log::debug!("MetaCommand = {:?}", cmd);
-                        break;
+                        let _ = match handle_meta_command(cmd) {
+                            Response::Exit => break,
+                            Response::Ok(response) => println!("{}", response),
+                            Response::Err(err) => log::error!("Error: {}", err),
+                        };
                     },
                     _ => {
                         println!("Error: unknown command or invalid arguments: '{}'. Enter '.help'", &command);
