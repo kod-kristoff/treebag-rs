@@ -1,0 +1,21 @@
+applications.links.linkAlgebra:
+{
+  part = { 
+    filledCurve(
+      (0,0) left(.5,-.4) right (.5,.4),
+      (1,0) left(-.5,-.4) right (-.5,.4))
+  },
+  t1  = rotate(-30) . scale(1.03) . translate(1,0),
+  t1i = scale(1/1.03) . rotate(30) . translate(1,0),
+  L1 = <#part,t1>,
+  L1i = <#part,t1i>,
+  t2  = rotate(30) . scale(1.03) . translate(1,0),
+  t2i = scale(1/1.03) . rotate(-30) . translate(1,0),
+  L2 = <#part,t2>,
+  L2i = <#part,t2i>,
+  
+  arrow = { closedCurve((0,0),(1,0),(.7,.13),(.7,.06),(0,.06)) },
+  id = scale(1),
+  ARR = <#arrow,id>
+  
+}

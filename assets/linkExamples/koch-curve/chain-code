@@ -1,0 +1,15 @@
+applications.links.linkAlgebra:
+{
+  rtrans = translate(1,0),
+  r = <{ polyline((0,0),(1,0)) },rtrans>,
+  
+  ltrans = translate(-1,0),
+  l = <{ polyline((0,0),(-1,0)) },ltrans>,
+  
+  utrans = translate(0,1),
+  u = <{ polyline((0,0),(0,1)) },utrans>,
+  
+  dtrans = translate(0,-1),
+  d = <{ polyline((0,0),(0,-1)) },dtrans>
+  
+}

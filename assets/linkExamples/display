@@ -1,0 +1,4 @@
+applications.collages.collageDisplay:
+  pathname "ps",
+  filename "out#.ps",
+  linewidth .5pt

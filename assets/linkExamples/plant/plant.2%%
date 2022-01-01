@@ -1,0 +1,14 @@
+generators.tdTransducer:
+  (
+    { S:0, t1:1, S0:0, init:1, bot:0 },
+    { +:0, pop:0, "[":0, S:0, conc:3, conc:16, F:0, -:0 },
+    { q0, F },
+    {
+      q0[init[x1]] -> F[x1], 
+      F[t1[x1]] -> conc[F[x1],F[x1],"[",+,F[x1],+,F[x1],pop,"[",+,F[x1],pop,"[",-,F[x1],pop], 
+      F[bot] -> F, 
+      F[S] -> F, 
+      F[S0] -> F
+    },
+    q0
+  )

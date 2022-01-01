@@ -1,0 +1,14 @@
+applications.links.linkAlgebra:
+{
+  alpha0 = const(90),
+  alpha = const(22.5),
+  
+  translate = translate(cos(#alpha0),sin(#alpha0)),
+  F = <{ polyline((0,0),(cos(#alpha0),sin(#alpha0))) },translate>,
+  f = <{},translate>,
+  
+  rot+ = rotate(#alpha),
+  rot- = rotate(-#alpha),
+  + = <{},rot+>,
+  - = <{},rot->
+}

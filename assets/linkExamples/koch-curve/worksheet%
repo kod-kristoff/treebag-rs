@@ -1,0 +1,14 @@
+Worksheet configuration
+
+Worksheet size is (164, 305)
+
+Component 0 is "curve" at (75,30) *
+Component 1 is "chain-code" at (76,130) 
+Component 2 is 1 up "display" at (76,238) ** with "auto zoom"
+
+Edges are
+
+  0 -> 1
+  1 -> 2
+
+end

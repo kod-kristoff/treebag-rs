@@ -1,0 +1,12 @@
+generators.ET0LTreeGrammar:
+(
+  { r, u, l, d },
+  { r:0, u:0, l:0, d:0, conc:8 },
+  {{ 
+    r -> conc[r,u,r,d,d,r,u,r],
+    u -> conc[u,l,u,r,r,u,l,u],
+    l -> conc[l,d,l,u,u,l,d,l],
+    d -> conc[d,r,d,l,l,d,r,d]
+  }},
+  r
+)

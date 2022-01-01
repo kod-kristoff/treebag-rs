@@ -1,0 +1,12 @@
+generators.regularTreeGrammar:
+(
+  { S, A },
+  { a:0, b:0, "[":0, pop:0, sep:0, conc:2, conc:3 },
+  {
+    S -> conc["[", A],
+    A -> conc[a, A, a],
+    A -> conc[b, A, b],
+    A -> conc[pop,sep] weight 0
+  },
+  S
+)

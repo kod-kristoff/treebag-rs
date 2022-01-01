@@ -1,0 +1,12 @@
+generators.stubbornRegularTreeGrammar:
+  (
+    { S, S0 },
+    { t1:1, init:1, bot:0 },
+    {
+      S -> init[bot] weight 0,
+      S -> init[S0],
+      S0 -> t1[bot] weight 0,
+      S0 -> t1[S0]
+    },
+    S
+  )

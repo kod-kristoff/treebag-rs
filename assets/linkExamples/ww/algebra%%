@@ -1,0 +1,11 @@
+applications.links.linkAlgebra:
+{
+  sq = { polygon((0,-1/2),(1,-1/2),(1,1/2),(0,1/2)) },
+  t = translate(1,0),
+  a = <#sq,t>,
+  b = <#sq + { filledEllipse(1/2,0,1/3,1/3) },t>,
+  
+  rot = rotate(180),
+  sep = <{ filledPolygon((0,1/2),(-1/2,1),(1/2,1)) },rot>
+  
+}

@@ -1,0 +1,21 @@
+applications.links.linkAlgebra:
+{
+  id = scale(1),
+  trans = matrix(.85,.04,-.04,.85) . translate(0,1.6),
+  stem = <{ filledPolygon((-.025,0),(.025,0),(.025,1.6),(-.025,1.6)) },trans>,
+  
+  right = matrix(-.15,.28,.26,.24) . translate(0,.44),
+  rbranch = <{},right>,
+  
+  left = matrix(.2,-.26,.23,.22) . translate(0,1.6),
+  lbranch = <{},left>,
+  
+  tri = { filledPolygon((-.2,0),(.2,0),(0,.5)) },
+  S = <#tri,id>,
+  S1 = <#tri,id>,
+  S2 = <#tri,id>,
+  S3 = <#tri,id>,
+  S4 = <#tri,id>,
+  S5 = <#tri,id>,
+  S6 = <#tri,id>
+}

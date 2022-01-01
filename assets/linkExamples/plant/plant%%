@@ -1,0 +1,9 @@
+generators.ET0LTreeGrammar:
+(
+  { F },
+  { F:0, +:0, -:0, "[":0, pop:0, conc:16 },
+  {{
+    F -> conc[F, F, "[", +, F, +, F, pop, "[",  +, F, pop, "[", -, F, pop]
+  }},
+  F
+)

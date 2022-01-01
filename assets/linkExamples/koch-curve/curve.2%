@@ -1,0 +1,26 @@
+generators.tdTransducer:
+  (
+    { S:0, t1:1, S0:0, init:1, bot:0 },
+    { l:0, u:0, conc:8, r:0, d:0 },
+    { q0, l, u, r, d },
+    {
+      q0[init[x1]] -> r[x1], 
+      r[t1[x1]] -> conc[r[x1],u[x1],r[x1],d[x1],d[x1],r[x1],u[x1],r[x1]], 
+      u[t1[x1]] -> conc[u[x1],l[x1],u[x1],r[x1],r[x1],u[x1],l[x1],u[x1]], 
+      l[t1[x1]] -> conc[l[x1],d[x1],l[x1],u[x1],u[x1],l[x1],d[x1],l[x1]], 
+      d[t1[x1]] -> conc[d[x1],r[x1],d[x1],l[x1],l[x1],d[x1],r[x1],d[x1]], 
+      l[bot] -> l, 
+      l[S] -> l, 
+      l[S0] -> l, 
+      u[bot] -> u, 
+      u[S] -> u, 
+      u[S0] -> u, 
+      r[bot] -> r, 
+      r[S] -> r, 
+      r[S0] -> r, 
+      d[bot] -> d, 
+      d[S] -> d, 
+      d[S0] -> d
+    },
+    q0
+  )

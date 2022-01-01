@@ -1,0 +1,24 @@
+generators.regularTreeGrammar:
+(
+  { S, A1, A2 },
+  { L1:0, L1i:0, L2:0, L2i:0, E:0, conc:2, conc:3, ARR:0 },
+  {
+%
+% The nonterminals A1 and A2 may be identified as far as the
+% generated language is concerned. However, in connection with
+% the weights used in the rules, they ensure a nicer distribution
+% of pictures in the language when using the random generation
+% mode.
+
+%    S -> conc[L2i,ARR],
+    S -> conc[A1,L1],
+    S -> conc[A2,L1],
+    A1 -> conc[L1,A1,L1i] weight 5,
+    A2 -> conc[L2,A2,L2i] weight 5,
+    A1 -> conc[L2,A2,L2i],
+    A2 -> conc[L1,A1,L1i],
+    A1 -> E weight 0,
+    A2 -> E weight 0
+  },
+  S
+)

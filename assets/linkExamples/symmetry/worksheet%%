@@ -1,0 +1,14 @@
+Worksheet configuration
+
+Worksheet size is (164, 305)
+
+Component 0 is "grammar" at (75,30) * with "random generation"
+Component 1 is "algebra" at (76,130) 
+Component 2 is 1 up "display" at (76,238) ** with "auto zoom"
+
+Edges are
+
+  0 -> 1
+  1 -> 2
+
+end

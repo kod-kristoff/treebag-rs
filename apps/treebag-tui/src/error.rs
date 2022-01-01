@@ -1,3 +1,6 @@
+use std::result;
+
+
 #[derive(Debug, thiserror::Error, PartialEq)]
 pub enum AppError {
     #[error("Unknown command: {0}")]
@@ -10,3 +13,5 @@ pub enum Response<T> {
     Ok(T),
     Err(AppError),
 }
+
+pub type Result<T> = result::Result<T, AppError>;

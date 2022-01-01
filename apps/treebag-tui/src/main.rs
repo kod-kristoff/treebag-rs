@@ -1,6 +1,7 @@
 mod error;
 mod meta_command;
 mod repl;
+mod treebag_command;
 
 use rustyline::{
     error::ReadlineError,
@@ -9,9 +10,13 @@ use rustyline::{
 
 use repl::{CommandType, get_command_type};
 
-pub use error::{AppError, Response};
+use treebag_app::{Worksheet};
+
+pub use error::{AppError, Response, Result};
 pub use crate::meta_command::MetaCommand;
+pub use crate::treebag_command::TreebagCommand;
 use crate::meta_command::{handle_meta_command};
+use crate::treebag_command::handle_treebag_command;
 
 
 fn main() -> rustyline::Result<()> {
@@ -27,6 +32,8 @@ fn main() -> rustyline::Result<()> {
     }
 
     let mut count = 1;
+
+    let mut worksheet = Worksheet::new();
     loop {
         if count == 1 {
             // Friendly intro message for the user
@@ -59,8 +66,12 @@ fn main() -> rustyline::Result<()> {
                             Response::Err(err) => log::error!("Error: {}", err),
                         };
                     },
-                    _ => {
-                        println!("Error: unknown command or invalid arguments: '{}'. Enter '.help'", &command);
+                    CommandType::TreebagCommand(cmd) => {
+                        log::debug!("TreebagCommand = {:?}", cmd);
+                        let _ = match handle_treebag_command(cmd, &mut worksheet) {
+                            Ok(response) => println!("{}", response),
+                            Err(err) => log::error!("Error: {}", err)
+                        };
                     }
                 }
             }

@@ -1,0 +1,38 @@
+generators.tdTransducer:
+  (
+    { S:0, t1:1, S0:0, init:1, bot:0 },
+    { lbranch:0, stem:0, S:0, rbranch:0, "[":0, conc:10, S6:0, S5:0, "]":0, S4:0, S3:0, S2:0, S1:0 },
+    { q0, S6, S5, S4, S3, S, S2, S1 },
+    {
+      q0[init[x1]] -> S[x1], 
+      S[t1[x1]] -> conc["[",stem,S[x1],"]","[",rbranch,S1[x1],"]",lbranch,S1[x1]], 
+      S1[t1[x1]] -> S2[x1], 
+      S2[t1[x1]] -> S3[x1], 
+      S3[t1[x1]] -> S4[x1], 
+      S4[t1[x1]] -> S5[x1], 
+      S5[t1[x1]] -> S6[x1], 
+      S6[t1[x1]] -> S[x1], 
+      S6[bot] -> S6, 
+      S6[S] -> S6, 
+      S6[S0] -> S6, 
+      S5[bot] -> S5, 
+      S5[S] -> S5, 
+      S5[S0] -> S5, 
+      S4[bot] -> S4, 
+      S4[S] -> S4, 
+      S4[S0] -> S4, 
+      S[bot] -> S, 
+      S[S] -> S, 
+      S[S0] -> S, 
+      S3[bot] -> S3, 
+      S3[S] -> S3, 
+      S3[S0] -> S3, 
+      S2[bot] -> S2, 
+      S2[S] -> S2, 
+      S2[S0] -> S2, 
+      S1[bot] -> S1, 
+      S1[S] -> S1, 
+      S1[S0] -> S1
+    },
+    q0
+  )

@@ -1,0 +1,17 @@
+generators.ET0LTreeGrammar:
+(
+  { S, S1, S2, S3, S4, S5, S6 },
+  { S:0, S1:0, S2:0, S3:0, S4:0, S5:0, S6:0, stem:0, rbranch:0, lbranch:0, conc:10, "[":0, pop:0 },
+  {
+    {
+      S -> conc["[", stem, S, pop, "[", rbranch, S1, pop, lbranch, S1],
+      S1 -> S2,
+      S2 -> S3,
+      S3 -> S4,
+      S4 -> S5,
+      S5 -> S6,
+      S6 -> S
+    }
+  },
+  S
+)
