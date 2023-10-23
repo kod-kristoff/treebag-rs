@@ -1,12 +1,14 @@
+use crate::Symbol;
+
 // package terms;
-// 
+//
 // /** A ranked symbol.
 //   */
 // public class symbol {
-// 
+//
 //   protected String name;
 //   protected int    rank;
-//   
+//
 // /** A symbol whose name and rank are given as arguments.
 //   * @param n the name of the symbol
 //   * @param rk its rank
@@ -15,10 +17,10 @@
 //     name = n.intern();
 //     rank = rk;
 //   }
-//   
+//
 // /** A symbol whose instance variables are not yet inititalised. */
-//   protected symbol() {} 
-//   
+//   protected symbol() {}
+//
 // /** Returns the name of the symbol.
 //   * The names of symbols can be compared using the == operator because this method
 //   * returns the canonical representation of the string obtained by an application of the method
@@ -27,13 +29,13 @@
 //   public String toString() {
 //     return name;
 //   }
-// 
+//
 // /** Returns the rank of the symbol.
 //   */
 //   public int rank() {
 //     return rank;
 //   }
-// 
+//
 // /** Two symbols are equal iff their names and ranks coincide.
 //   */
 //   public boolean equals(Object other) {
@@ -42,20 +44,20 @@
 //     }
 //     else return false;
 //   }
-// 
+//
 //   public int hashCode() {
 //     return name.hashCode();
 //   }
-//   
+//
 // }
 // package terms;
-// 
+//
 // /** A ranked symbol.
 //   */
 // public class synchronizedSymbol extends symbol {
-// 
+//
 //   private int[] syncInfo;
-//   
+//
 // /** A symbol of rank 0 with synchronization information.
 //   * @param n the name of the symbol
 //   * @param syncSize the number of synchronization numbers
@@ -64,25 +66,25 @@
 //     super(n,0);
 //     syncInfo = new int[syncSize];
 //   }
-//   
+//
 //   public void setSync(int index, int sync) {
 //     syncInfo[index] = sync;
 //   }
-//   
+//
 //   public int[] getSync() {
 //     return (int[])syncInfo.clone();
 //   }
-//   
+//
 //   public void setSync(int syncInfo[]) {
 //     this.syncInfo = syncInfo;
-//   } 
+//   }
 // }
 // package terms;
-// 
+//
 // public class variable extends symbol {
-// 
+//
 //   int index = 0;
-// 
+//
 //   public variable(String name) {
 //     super(name, 0);
 //     try {
@@ -90,13 +92,13 @@
 //     } catch (NumberFormatException e)
 //     { throw new InternalError(); }
 //   }
-//   
+//
 //   public variable(int index) {
 //     super("x" + new Integer(index).toString(), 0);
 //     this.index = index;
 //   }
-//   
-//   public static boolean isVariable(String name) {
+//
+//   public static boolean isParameter(String name) {
 //     if (name.length() < 2) return false;
 //     if (name.charAt(0) != 'x') return false;
 //     if (name.charAt(1) == '0' && name.length() > 2) return false;
@@ -105,21 +107,36 @@
 //     }
 //     return true;
 //   }
-//   
+//
 //   public int index() { return index; }
-//   
+//
 // }
 // package terms;
-// 
+//
 // /**
 //  * A copy of variable.java, but symbol names must be
 //  * y1, y2, ... instead of x1, x2, ...
 //  */
-// 
+//
+#[derive(Debug)]
+pub struct Parameter {
+    name: String,
+    index: i32,
+}
+// public class variable extends symbol {
+//
+//   int index = 0;
+
+impl Parameter {
+    pub fn from_index(index: i32) -> Self {
+        let name = format!("y{}", index);
+        Self { name, index }
+    }
+}
 // public class parameter extends symbol {
-// 
+//
 //     int index = 0;
-// 
+//
 //     public parameter(String name) {
 //         super(name, 0);
 //         try {
@@ -127,12 +144,12 @@
 //         } catch (NumberFormatException e)
 //         { throw new InternalError(); }
 //     }
-// 
+//
 //     public parameter(int index) {
 //         super("y" + new Integer(index).toString(), 0);
 //         this.index = index;
 //     }
-//     
+//
 //     public static boolean isParameter(String name) {
 //         if (name.length() < 2) return false;
 //         if (name.charAt(0) != 'y') return false;
@@ -142,7 +159,40 @@
 //         }
 //         return true;
 //     }
-// 
+//
 //     public int index() { return index; }
 // }
-// 
+//
+impl Symbol for Parameter {
+    fn name(&self) -> &str {
+        &self.name
+    }
+
+    fn rank(&self) -> i32 {
+        0
+    }
+}
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn can_create_from_index() {
+        let var = Parameter::from_index(5);
+
+        assert_eq!(var.index, 5);
+        assert_eq!(&var.name, "y5");
+    }
+
+    mod trait_symbol {
+        use super::*;
+
+        #[test]
+        fn can_create_from_index() {
+            let var = Parameter::from_index(5);
+
+            assert_eq!(var.rank(), 0);
+            assert_eq!(var.name(), "y5");
+        }
+    }
+}
